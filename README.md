@@ -1,6 +1,17 @@
-<img src="https://www.natureinabox.com.my/wp-content/uploads/2014/10/greenwashing-1024x355.png" width="500">
 
-### The aim of this project is to analyze the language and behaviours of [Global 2000](https://www.forbes.com/global2000/#3acf0a88335d) companies around [greenwashing](https://www.sustainablejungle.com/sustainable-living/what-is-greenwashing/). 
+### TITLE HERE
+
+Photo here 
+
+We live in a world where social media is constantly analyzed, optimized, and leveraged to perpetuate more engagement (insert lyric from Bo Burnham's Inside here). While parts of this statement are somewhat depressing, there is a lot of opportunity for data scientists to contribute to this engagement analysis cylce. 
+
+This tutorial will walk through how you can put together a python script that allows you to enter an instagram url and render a visualization of that particular post's sentiment. It will do this by walking through the following steps:
+- authenticating to an instagram account for instaloader 
+- using instaloader to scrape instagram metadata
+- using sentiment analysis to label each comment
+- display the results 
+
+
 
 ## Selected Company Data
 -  **Every Global 2000 Company with:**
