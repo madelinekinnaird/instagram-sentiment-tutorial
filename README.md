@@ -18,7 +18,19 @@ pip3 install instaloader
 ```
 Instaloader's [documentation](https://instaloader.github.io/) is pretty good and if you plan to work with a lot of Instagram data it is worthwhile to read through. 
 
+The simplest way to get started with instaloader is through the command line and using an account username and password: 
+```python
+import instaloader
 
+# Get instance
+L = instaloader.Instaloader()
+
+# Optionally, login or load session
+L.login(USER, PASSWORD)        # (login)
+L.interactive_login(USER)      # (ask password on terminal)
+L.load_session_from_file(USER) # (load session created w/
+                               #  `instaloader -l USERNAME`)
+```
 ## Authenticating to an Instagram Account using Instaloader
 Most times if you need to gather large amounts of data from Instagram, it is easiest to use a scraper 
 
