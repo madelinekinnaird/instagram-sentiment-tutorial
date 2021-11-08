@@ -13,7 +13,7 @@ This tutorial will walk through how you can put together a python script that al
 
 
 
-## Selected Company Data
+## Authenticating to an Instagram Account using Instaloader
 -  **Every Global 2000 Company with:**
     - a verified instagram account
     - captions that are 80% in english
