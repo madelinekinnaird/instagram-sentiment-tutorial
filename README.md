@@ -11,19 +11,19 @@ This tutorial will walk through how you can put together a python script that al
 - 3. using sentiment analysis to label each comment
 - 4. display the results 
 
-
+First you'll want to install instaloader.
 ```python
-pip install instaloader
+pip3 install instaloader
 
 ```
-
+Instaloader's [documentation](https://instaloader.github.io/) is pretty good and if you plan to work with a lot of Instagram data it is worthwhile to read through. 
 
 
 ## Authenticating to an Instagram Account using Instaloader
 Most times if you need to gather large amounts of data from Instagram, it is easiest to use a scraper 
 
 ## Instaloader Scraper
-The [Instagram scraper](https://github.com/madelinekinnaird/quantifying-greenwashing/blob/main/ig_scraper/post-scraper-list.py) built for this project was built using the extraordinary [Instaloader](https://instaloader.github.io/) package. The fifteen attributes below were collected for each companies Instagram feeds. 
+The [Instagram scraper](https://github.com/madelinekinnaird/quantifying-greenwashing/blob/main/ig_scraper/post-scraper-list.py) built for this project was built using the extraordinary  package. The fifteen attributes below were collected for each companies Instagram feeds. 
 
 ```python
 post_info = {
