@@ -46,10 +46,11 @@ from instaloader import ConnectionException, Instaloader
 In order for this code to work, you'll need to be logged into the specified instagram account on firefox at runtime. I recommend creating a burner instagram account for scraping so your personal account does not get timed out. 
 ![image](https://user-images.githubusercontent.com/14099908/140822121-10564cc1-bd6f-469e-b92c-ed45647b9cf9.png)
 
-Once you're logged in you'll be able to load the firefox session for instaloader. You'll need to find the path to your firefix cookies database on your local machine. For a Windows machine you can use [this guide](https://www.digitalcitizen.life/cookies-location-windows-10/) to find the file you will need which will end with `cookies.sqlite`.
+Once you're logged in you'll be able to load the firefox session for instaloader. You'll need to find the path to your firefix cookies database on your local machine. For a Windows machine you can use [this guide](https://www.digitalcitizen.life/cookies-location-windows-10/) to find the file you will need which will end with `cookies.sqlite`. This is generally where the path will be: `C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite`
+
+![image](https://user-images.githubusercontent.com/14099908/140823874-d729675d-bc03-4885-b050-5e2f81b28610.png)
 
 
-This is generally where the path will be: `C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite`
 ``` python
 path_to_firefox_cookies = "C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite"
 FIREFOXCOOKIEFILE = glob(expanduser(path_to_firefox_cookies))[0]
@@ -80,29 +81,11 @@ instaloader.context.username = username
 instaloader.save_session_to_file()
 ```
 
-## only allow one attempt for session connection
-instaloader = Instaloader(max_connection_attempts=1)
-
-## get cookie id for instagram
-instaloader.context._session.cookies.update(connect(FIREFOXCOOKIEFILE)
-                                            .execute("SELECT name, value FROM moz_cookies "
-                                                     "WHERE host='.instagram.com'"))
-## check connection
-try:
-    username = instaloader.test_login()
-    if not username:
-        raise ConnectionException()
-except ConnectionException:
-    raise SystemExit("Cookie import failed. Are you logged in successfully in Firefox?")
-
-instaloader.context.username = username
-
-## save session to instaloader file for later use
-instaloader.save_session_to_file()
-```
 
 ## Instaloader Scraper
-The [Instagram scraper](https://github.com/madelinekinnaird/quantifying-greenwashing/blob/main/ig_scraper/post-scraper-list.py) built for this project was built using the extraordinary  package. The fifteen attributes below were collected for each companies Instagram feeds. 
+Hooray! Now you are authenicated to Instagram and you can easily use Instaloader from your pytyhon IDE without having to think about your login again!! 
+
+
 
 ```python
 post_info = {
