@@ -12,11 +12,17 @@ This tutorial will walk through how you can put together a python script that al
 - 4. display the results 
 
 
+```python
+pip install instaloader
+
+```
+
+
 
 ## Authenticating to an Instagram Account using Instaloader
+Most times if you need to gather large amounts of data from Instagram, it is easiest to use a scraper 
 
-
-## Instagram Metrics
+## Instaloader Scraper
 The [Instagram scraper](https://github.com/madelinekinnaird/quantifying-greenwashing/blob/main/ig_scraper/post-scraper-list.py) built for this project was built using the extraordinary [Instaloader](https://instaloader.github.io/) package. The fifteen attributes below were collected for each companies Instagram feeds. 
 
 ```python
@@ -39,7 +45,12 @@ post_info = {
 				}
 ```
 
-## Sustainability Score
+## Sentiment Analysis
 Each companies ESG & sustainbility score was obtained from the student version of [CSRhub](https://www.csrhub.com/).
 
-![Alternate image text](https://blog.csrhub.com/hs-fs/hubfs/blog/CSRHub%20LLC%20ratings.png?width=790&height=250&name=CSRHub%20LLC%20ratings.png)
+
+
+## Display the Results
+
+
+## Putting it All Together 
