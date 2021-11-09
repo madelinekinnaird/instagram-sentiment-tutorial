@@ -48,7 +48,7 @@ In order for this code to work, you'll need to be logged into the specified inst
 
 Once you're logged in you'll be able to load the firefox session for instaloader. You'll need to find the path to your firefix cookies database on your local machine. For a Windows machine you can use [this guide](https://www.digitalcitizen.life/cookies-location-windows-10/) to find the file you will need which will end with `cookies.sqlite`. This is generally where the path will be: `C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite`
 
-![image](https://user-images.githubusercontent.com/14099908/140823874-d729675d-bc03-4885-b050-5e2f81b28610.png){ width=50% }
+![image](https://user-images.githubusercontent.com/14099908/140823874-d729675d-bc03-4885-b050-5e2f81b28610.png){ width=10% }
 
 
 ``` python
