@@ -85,6 +85,36 @@ instaloader.save_session_to_file()
 ## Instaloader Scraper
 Hooray! Now you are authenicated to Instagram and you can easily use Instaloader from your pytyhon IDE without having to think about your login again!! 
 
+Now you are easily able to initiate instaloader and login.
+
+```python
+## initiating instaloader
+instagram = instaloader.Instaloader()
+
+## login to saved session
+instagram.load_session_from_file('IG_USERNAME_LOGGED_INTO_FIREFOX_HERE_')
+```
+Once you are logged you are able to pull data of varying granularities from Instagram. You can pull account-level data or post-level data. In this example we'll be looking at individual Instagram posts using shortcode. Shortcode is the unique string of the post's url. 
+
+As an example, we'll be looking at and analyzing comments on NPR's instagram posts. Here is the post and URL of a story about a squid games themed flash mob in the Philippines that promoted social distancing and mask wearing. We can see the shortcode highlighted at the top in the URL `CV5WqggMDCb`.
+
+![image](https://user-images.githubusercontent.com/14099908/140842335-f61b802c-c294-4691-9222-a741ee05c51f.png)
+
+
+```python
+## direct instaloader to correct post using it's shortcode
+SHORTCODE = CV5WqggMDCb
+post = instaloader.Post.from_shortcode(instagram.context, SHORTCODE)
+
+## get comment metadata from the post
+for x in post.get_comments():
+        post_info = {
+        "post_shortcode":post.shortcode,
+        "commenter_username": x.owner,
+        "comment_text": (emoji.demojize(x.text)).encode('utf-8', errors='ignore').decode() if x.text else "",
+        "comment_likes": x.likes_count
+        }
+```
 
 
 ```python
