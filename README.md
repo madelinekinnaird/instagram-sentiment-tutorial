@@ -1,16 +1,16 @@
 
 # Scraping and Plotting Sentiment of an Instagram Comment Section
-
-<img src="https://cdn.theatlantic.com/thumbor/otWxniaPPXjrnVx3X-a4bPU5bRk=/0x0:960x540/960x540/media/img/mt/2019/01/Untitled_design_3/original.png" width="500">
-
+<p align="center">
+  <img src="https://cdn.theatlantic.com/thumbor/otWxniaPPXjrnVx3X-a4bPU5bRk=/0x0:960x540/960x540/media/img/mt/2019/01/Untitled_design_3/original.png" width="500">
+</p>
 
 We live in a world where social media is constantly analyzed, optimized, and leveraged to perpetuate more engagement (insert lyric from Bo Burnham's Inside here). While parts of this statement are somewhat depressing, there is a lot of opportunity for data scientists to contribute to this engagement analysis cylce. 
 
 This tutorial will walk through how you can put together a python script that allows you to enter an instagram url and render a visualization of that particular post's sentiment. It will do this by walking through the following steps:
-- 1. authenticating to an instagram account for instaloader 
-- 2. using instaloader to scrape instagram metadata
-- 3. using sentiment analysis to label each comment
-- 4. display the results 
+1. authenticating to an instagram account for instaloader 
+2. using instaloader to scrape instagram metadata
+3. using sentiment analysis to label each comment
+4. display the results 
 
 Before we get started you'll want to install the instaloader package.
 ```python
@@ -35,7 +35,7 @@ L.load_session_from_file(USER) # (load session created w/
 
 
 
-## Authenticating to an Instagram Account using Instaloader
+## 1. Authenticating to an Instagram Account using Instaloader
 Here I'll walk through the code that will allow you to quickly and easily set up a powerful Instagram scraper. First, import the following packages (and install as neccessary). 
 ```python
 from glob import glob
@@ -83,7 +83,7 @@ instaloader.save_session_to_file()
 ```
 
 
-## Instaloader Scraper
+## 2. Instaloader Scraper
 Hooray! Now you are authenicated to Instagram and you can easily use Instaloader from your pytyhon IDE without having to think about your login again!! 
 
 Now you are easily able to initiate instaloader and login.
@@ -121,7 +121,7 @@ for x in post.get_comments():
 
 
 
-## Sentiment Analysis
+## 3. Sentiment Analysis
 There are infinite ways to approach sentiment analysis and natural language processing more broadly. You have the option of cleaning, lemmatizing, and prepping your text in any way appropriate for you application. Once you have your text in your desired format, you can use the TextBlob package to easily get polarity of the text, which is essentially just sentiment on a scale of negative one (negative sentiment) to positive one (positive sentiment). 
 
 ```python
@@ -134,7 +134,7 @@ df['text_polarity'] = df['comment_text'].apply(getPolarity)
   ```
 
 
-## Display the Results
+## 4. Display the Results
 The visualization we'll use to express the varying sentiments of each posts comments is a lollipop chart - made popular by Tableau! We'll be using matplotlib to create and customize this plot.
 
 ```python
@@ -189,7 +189,7 @@ from textblob import TextBlob
 To add user and account info, make sure you are currently logged into specified account on firefox.
 '''
 #######################################
-## Authenticate to Instagram
+## 1. Authenticate to Instagram
 #######################################
 path_to_firefox_cookies = "C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite"
 FIREFOXCOOKIEFILE = glob(expanduser(path_to_firefox_cookies))[0]
@@ -216,7 +216,7 @@ instaloader.context.username = username
 instaloader.save_session_to_file()
 
 #######################################
-## Build scraper
+## 2. Build scraper
 #######################################
 
 ## initiating instaloader
@@ -263,7 +263,7 @@ Input url in string format.
 	
 	
 #######################################
-## Add sentiment and plot sentiment counts
+## 3. Add sentiment 
 #######################################
 ## load scraped data
 df = pd.read_csv('combined_csv.csv')
@@ -274,6 +274,10 @@ def getPolarity(text):
 ## add polarity as a column in our data
 df['text_polarity'] = df['comment_text'].apply(getPolarity)
 df['sentiment'] = pd.cut(df['text_polarity'], [-1, -0.0000000001, 0.0000000001, 1], labels=["Negative", "Neutral", "Positive"])
+
+#######################################
+## 4. Plot sentiment counts
+#######################################
 
 ## prep data for graphing
 graph1 = df.groupby(['post_shortcode', 'sentiment']).count().reset_index()
