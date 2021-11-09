@@ -44,11 +44,11 @@ from sqlite3 import connect
 from instaloader import ConnectionException, Instaloader
 ```
 In order for this code to work, you'll need to be logged into the specified instagram account on firefox at runtime. I recommend creating a burner instagram account for scraping so your personal account does not get timed out. 
-![image](https://user-images.githubusercontent.com/14099908/140822121-10564cc1-bd6f-469e-b92c-ed45647b9cf9.png width="200)
+![image](https://user-images.githubusercontent.com/14099908/140822121-10564cc1-bd6f-469e-b92c-ed45647b9cf9.png)
 
 Once you're logged in you'll be able to load the firefox session for instaloader. You'll need to find the path to your firefix cookies database on your local machine. For a Windows machine you can use [this guide](https://www.digitalcitizen.life/cookies-location-windows-10/) to find the file you will need which will end with `cookies.sqlite`. This is generally where the path will be: `C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite`
 
-![image](https://user-images.githubusercontent.com/14099908/140823874-d729675d-bc03-4885-b050-5e2f81b28610.png)
+![image](https://user-images.githubusercontent.com/14099908/140823874-d729675d-bc03-4885-b050-5e2f81b28610.png =x250)
 
 
 ``` python
