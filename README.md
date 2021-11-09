@@ -96,14 +96,15 @@ instagram.load_session_from_file('IG_USERNAME_LOGGED_INTO_FIREFOX_HERE_')
 ```
 Once you are logged you are able to pull data of varying granularities from Instagram. You can pull account-level data or post-level data. In this example we'll be looking at individual Instagram posts using shortcode. Shortcode is the unique string of the post's url. 
 
-As an example, we'll be looking at and analyzing comments on NPR's instagram posts. Here is the post and URL of a story about a squid games themed flash mob in the Philippines that promoted social distancing and mask wearing. We can see the shortcode highlighted at the top in the URL `CV5WqggMDCb`.
+As an example, we'll be looking at and analyzing comments on NPR's instagram posts. Here is the post and URL of a story about a squid games themed flash mob in the Philippines that promoted social distancing and mask wearing. We can see the shortcode highlighted at the top in the URL, `CV5WqggMDCb`.
 
 ![image](https://user-images.githubusercontent.com/14099908/140842335-f61b802c-c294-4691-9222-a741ee05c51f.png)
 
+We can use this specific shortcode to scrap all of the comments from that specific post. 
 
 ```python
 ## direct instaloader to correct post using it's shortcode
-SHORTCODE = CV5WqggMDCb
+SHORTCODE = 'CV5WqggMDCb'
 post = instaloader.Post.from_shortcode(instagram.context, SHORTCODE)
 
 ## get comment metadata from the post
@@ -115,31 +116,20 @@ for x in post.get_comments():
         "comment_likes": x.likes_count
         }
 ```
+This code will return something like:
 
 
-```python
-post_info = {
-				"shortcode": post.shortcode,
-				"username": company,
-				"date_utc": post.date_utc.strftime("%Y-%m-%d %H:%M"),
-				"is_video": "yes" if post.is_video else "no",
-				"is_sponsored": post.is_sponsored,
-				"hashtags": ",".join(post.caption_hashtags),
-				"mentions": ",".join(post.caption_mentions),
-				"caption": (emoji.demojize(post.caption)).encode('utf-8'),
-				"video_view_count": post.video_view_count if post.is_video else 0,
-				"video_length": post.video_duration if post.is_video else 0,
-				"likes": post.likes,
-				"comments": post.comments,
-				"likes+comments": (post.likes + post.comments),
-				"location_name": post.location.name if post.location else "",
-				"location_latlong": " ".join((str(post.location.lat), str(post.location.lng))) if post.location else ""
-				}
-```
 
 ## Sentiment Analysis
-Each companies ESG & sustainbility score was obtained from the student version of [CSRhub](https://www.csrhub.com/).
 
+```python
+def basic_clean(text):
+  """
+ def getPolarity(text):
+   return TextBlob(text).sentiment.polarity
+
+df['text_polarity'] = df['comment_text'].apply(getPolarity)
+  ```
 
 
 ## Display the Results
