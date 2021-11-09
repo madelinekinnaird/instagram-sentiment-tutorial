@@ -11,14 +11,14 @@ This tutorial will walk through how you can put together a python script that al
 - 3. using sentiment analysis to label each comment
 - 4. display the results 
 
-First you'll want to install instaloader.
+Before we get started you'll want to install the instaloader package.
 ```python
 pip3 install instaloader
 
 ```
-Instaloader's [documentation](https://instaloader.github.io/) is pretty good and if you plan to work with a lot of Instagram data it is worthwhile to read through. 
+Instaloader's [documentation](https://instaloader.github.io/) is pretty good and if you plan to work with a lot of Instagram data it is a worthwhile read. 
 
-The simplest way to get started with instaloader is through the command line and using an account username and password: 
+For getting started, the simplest way to set up Instaloader is through the command line and using an account username and password: 
 ```python
 import instaloader
 
