@@ -4,7 +4,7 @@
   <img src="https://cdn.theatlantic.com/thumbor/otWxniaPPXjrnVx3X-a4bPU5bRk=/0x0:960x540/960x540/media/img/mt/2019/01/Untitled_design_3/original.png" width="500">
 </p>
 
-We live in a world where social media is constantly analyzed, optimized, and leveraged to perpetuate more engagement *insert lyric from Bo Burnham's Inside here*. While parts of this statement are somewhat depressing, there is a lot of opportunity for data scientists to contribute to this engagement analysis cylce. 
+We live in a world where social media is constantly analyzed, optimized, and leveraged to perpetuate more engagement (*insert lyric from Bo Burnham's Inside here*). While parts of this statement are somewhat depressing, there is a lot of opportunity for data scientists to contribute to this engagement analysis cylce. 
 
 This tutorial will walk through how you can put together a python script that allows you to enter an instagram url and render a visualization of that particular post's sentiment. It will do this by walking through the following steps:
 1. authenticating to an instagram account for instaloader 
