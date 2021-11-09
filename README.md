@@ -136,7 +136,150 @@ df['text_polarity'] = df['comment_text'].apply(getPolarity)
 ## Display the Results
 The visualization we'll use to express the varying sentiments of each posts comments is a lollipop chart - made popular by Tableau! We'll be using matplotlib to create and customize this plot.
 
+```python
+from matplotlib import pyplot as plt
 
+colors = colors=["#FF0066", "gray", "#00FF00"]
+
+## could potentially add other subplots here
+fig, (ax) = plt.subplots(ncols=1)
+
+for t, y, c in zip(df["sentiment"], df["comment_text"], colors):
+    ax.plot([t,t], [0,y], color=c, marker="o", MarkerSize = 20, markevery=(1,2))
+
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+    
+ax.set_ylim(0,None)
+plt.title("Instagram Comment Sentiment for 'CV5WqggMDCb'", fontsize = 15)
+plt.setp(ax.get_xticklabels(), rotation=0, fontsize = 12)
+
+plt.show()
+```
+
+![image](https://user-images.githubusercontent.com/14099908/140846619-b28d0b8c-2898-41d3-8151-7cf28a31c2f6.png)
 
 
 ## Putting it All Together 
+
+Using all of these components we can create a script/function that allows the user to simply input an Instagram url and get the plot of sentiment distribution. 
+
+```python 
+from glob import glob
+from os.path import expanduser
+from sqlite3 import connect
+import argparse
+import pathlib
+import sys
+import csv
+import time
+import emoji
+from glob import glob
+from os.path import expanduser
+from sqlite3 import connect
+import os.path
+import pandas as pd
+from datetime import datetime
+from matplotlib import pyplot as plt
+from instaloader import ConnectionException, Instaloader
+from textblob import TextBlob
+
+'''
+To add user and account info, make sure you are currently logged into specified account on firefox.
+'''
+
+FIREFOXCOOKIEFILE = glob(expanduser("C:/Users/mkinnaird\AppData\Roaming\Mozilla\Firefox\Profiles\k0r7kg6z.default-esr/cookies.sqlite"))[0]
+
+## only allow one attempt for session connection
+instaloader = Instaloader(max_connection_attempts=1)
+
+## get cookie id for instagram
+instaloader.context._session.cookies.update(connect(FIREFOXCOOKIEFILE)
+                                            .execute("SELECT name, value FROM moz_cookies "
+                                                     "WHERE host='.instagram.com'"))
+## check connection
+try:
+    username = instaloader.test_login()
+    if not username:
+        raise ConnectionException()
+except ConnectionException:
+    raise SystemExit("Cookie import failed. Are you logged in successfully in Firefox?")
+
+instaloader.context.username = username
+
+## save session to instaloader file for later use
+instaloader.save_session_to_file()
+
+
+
+## initiating instaloader
+instagram = instaloader.Instaloader(download_pictures=False, download_videos=False,
+                                    download_video_thumbnails=False, save_metadata=False, max_connection_attempts=0)
+
+## login
+instagram.load_session_from_file('gtown_datascraper1')
+
+
+url = fkdsajfdlkjf;lksdj;fdaslkfj;dsalkfjd;slafjdsa
+
+SHORTCODE = str(url[28:39])
+post = instaloader.Post.from_shortcode(instagram.context, SHORTCODE)
+
+output_path = pathlib.Path('post_data')
+post_file = output_path.joinpath(csvName).open("w", encoding="utf-8")
+
+field_names = [
+		    "post_shortcode",
+		    "commenter_username",
+		    "comment_text",
+		    "comment_likes"
+		    ]
+
+post_writer = csv.DictWriter(post_file, fieldnames=field_names)
+post_writer.writeheader()
+
+## get comments from post
+for x in post.get_comments():
+    post_info = {
+    "post_shortcode":post.shortcode,
+    "commenter_username": x.owner,
+    "comment_text": (emoji.demojize(x.text)).encode('utf-8', errors='ignore').decode() if x.text else "",
+    "comment_likes": x.likes_count
+    }
+
+post_writer.writerow(post_info)
+
+print("Done Scraping!")
+
+df = pd.read_csv('combined_csv.csv')
+
+
+
+def getPolarity(text):
+   return TextBlob(text).sentiment.polarity
+
+df['text_polarity'] = df['comment_text'].apply(getPolarity)
+
+df['sentiment'] = pd.cut(df['text_polarity'], [-1, -0.0000000001, 0.0000000001, 1], labels=["Negative", "Neutral", "Positive"])
+
+graph1 = df.groupby(['post_shortcode', 'sentiment']).count().reset_index()
+graph2 = graph1[graph1['post_shortcode'] == SHORTCODE]
+
+colors = colors=["#FF0066", "gray", "#00FF00"]
+
+fig, (ax) = plt.subplots(ncols=1)
+
+for t, y, c in zip(graph2["sentiment"], graph2["comment_text"], colors):
+    ax.plot([t,t], [0,y], color=c, marker="o", MarkerSize = 20, markevery=(1,2))
+
+ax.spines['right'].set_visible(False)
+ax.spines['top'].set_visible(False)
+    
+ax.set_ylim(0,None)
+plt.title("Instagram Comment Sentiment", fontsize = 15)
+plt.setp(ax.get_xticklabels(), rotation=0, fontsize = 12)
+
+
+
+plt.show()
+
