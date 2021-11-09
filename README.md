@@ -1,7 +1,8 @@
 
-### TITLE HERE
+# Scraping and Plotting Sentiment of an Instagram Comment Section
 
-Photo here 
+<img src="https://cdn.theatlantic.com/thumbor/otWxniaPPXjrnVx3X-a4bPU5bRk=/0x0:960x540/960x540/media/img/mt/2019/01/Untitled_design_3/original.png" width="500">
+
 
 We live in a world where social media is constantly analyzed, optimized, and leveraged to perpetuate more engagement (insert lyric from Bo Burnham's Inside here). While parts of this statement are somewhat depressing, there is a lot of opportunity for data scientists to contribute to this engagement analysis cylce. 
 
@@ -225,9 +226,7 @@ instagram = instaloader.Instaloader(download_pictures=False, download_videos=Fal
 ## login
 instagram.load_session_from_file('gtown_datascraper1')
 
-#######################################
-## Authenticate to Instagram
-#######################################
+
 def scrape_data(url):
 '''
 Input url in string format.
