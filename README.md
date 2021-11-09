@@ -116,16 +116,17 @@ for x in post.get_comments():
         "comment_likes": x.likes_count
         }
 ```
-This code will return something like:
+
 
 
 
 ## Sentiment Analysis
+There are infinite ways to approach sentiment analysis and natural language processing more broadly. You have the option of cleaning, lemmatizing, and prepping your text in any way appropriate for you application. Once you have your text in your desired format, you can use the TextBlob package to easily get polarity of the text, which is essentially just sentiment on a scale of negative one (negative sentiment) to positive one (positive sentiment). 
 
 ```python
-def basic_clean(text):
-  """
- def getPolarity(text):
+from textblob import TextBlob
+
+def getPolarity(text):
    return TextBlob(text).sentiment.polarity
 
 df['text_polarity'] = df['comment_text'].apply(getPolarity)
@@ -133,6 +134,9 @@ df['text_polarity'] = df['comment_text'].apply(getPolarity)
 
 
 ## Display the Results
+The visualization we'll use to express the varying sentiments of each posts comments is a lollipop chart - made popular by Tableau! We'll be using matplotlib to create and customize this plot.
+
+
 
 
 ## Putting it All Together 
