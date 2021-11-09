@@ -18,7 +18,7 @@ pip3 install instaloader
 ```
 Instaloader's [documentation](https://instaloader.github.io/) is pretty good and if you plan to work with a lot of Instagram data it is a worthwhile read. 
 
-For getting started, the simplest way to set up Instaloader is through the command line and using an account username and password: 
+For getting started, the simplest way to set up Instaloader is through the command line and using an account username and password (below). This method does work but I have found lots of issues to arise, especially if you are scraping large amounts of data. A more robust way to authenticate and load a saved Instagram session through firefox. I'll walk through this in the next section. 
 ```python
 import instaloader
 
@@ -32,10 +32,10 @@ L.load_session_from_file(USER) # (load session created w/
                                #  `instaloader -l USERNAME`)
 ```
 
-I've found that this method that lots of issues arise, especially if you are scraping large amounts of data. A more robust way to authenticate is depcited below. It is not necessary to use instaloader, but I have found it to be the best method. 
+
 
 ## Authenticating to an Instagram Account using Instaloader
-Here I'll walk through the code that will allow you to quickly and easily set up a powerful instagram scraper. First, import the following packages (and install as neccessary). 
+Here I'll walk through the code that will allow you to quickly and easily set up a powerful Instagram scraper. First, import the following packages (and install as neccessary). 
 ```python
 from glob import glob
 from os.path import expanduser
@@ -44,7 +44,7 @@ from sqlite3 import connect
 from instaloader import ConnectionException, Instaloader
 ```
 In order for this code to work, you'll need to be logged into the specified instagram account on firefox at runtime. I recommend creating a burner instagram account for scraping so your personal account does not get timed out. 
-![image](https://user-images.githubusercontent.com/14099908/140822121-10564cc1-bd6f-469e-b92c-ed45647b9cf9.png)
+![image](https://user-images.githubusercontent.com/14099908/140822121-10564cc1-bd6f-469e-b92c-ed45647b9cf9.png width="200)
 
 Once you're logged in you'll be able to load the firefox session for instaloader. You'll need to find the path to your firefix cookies database on your local machine. For a Windows machine you can use [this guide](https://www.digitalcitizen.life/cookies-location-windows-10/) to find the file you will need which will end with `cookies.sqlite`. This is generally where the path will be: `C:/Users/YOUR_USERNAME\AppData\Roaming\Mozilla\Firefox\Profiles\YOUR_PROFILE_FOLDER/cookies.sqlite`
 
